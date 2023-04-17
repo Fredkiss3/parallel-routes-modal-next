@@ -16,7 +16,6 @@ export default async function BoardsPage() {
             <Link
               href={`/boards/${b.id}`}
               className="rounded-md overflow-hidden"
-              prefetch={false}
             >
               <div className="h-[150px] max-w-[250px] w-full overflow-hidden rounded-md">
                 <Image

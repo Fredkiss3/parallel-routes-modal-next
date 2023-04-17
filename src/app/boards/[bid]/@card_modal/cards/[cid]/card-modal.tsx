@@ -39,7 +39,7 @@ export function CardModal(props: {
             </div>
           )}
           <DialogTitle>{props.title}</DialogTitle>
-          <DialogDescription>
+          <DialogDescription asChild>
             {props.description ? (
               <article
                 dangerouslySetInnerHTML={{
