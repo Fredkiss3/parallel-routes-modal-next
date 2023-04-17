@@ -1,0 +1,57 @@
+"use client";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "~/app/_components/dialog";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+export function CardModal(props: {
+  title: string;
+  cover: string | null;
+  description: string | null;
+}) {
+  const router = useRouter();
+  return (
+    <Dialog
+      open
+      onOpenChange={(open) => {
+        if (!open) {
+          router.back();
+        }
+      }}
+    >
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          {props.cover && (
+            <div className="h-[150px] w-full overflow-hidden rounded-md">
+              <Image
+                src={props.cover}
+                alt={`Cover ${props.title}`}
+                height={400}
+                width={400}
+                className="object-cover object-center"
+              />
+            </div>
+          )}
+          <DialogTitle>{props.title}</DialogTitle>
+          <DialogDescription>
+            {props.description ? (
+              <article
+                dangerouslySetInnerHTML={{
+                  __html: props.description,
+                }}
+              />
+            ) : (
+              <span className="italic">No description</span>
+            )}
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  );
+}
