@@ -29,6 +29,7 @@ export default async function BoardsPage({
                 href={`/boards/${bid}/cards/${card.id}`}
                 className="rounded-md overflow-hidden"
                 key={card.id}
+                prefetch={false}
               >
                 <div className="h-[150px] w-[250px] overflow-hidden rounded-md">
                   {card.coverURL ? (
