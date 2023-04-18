@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ShowHideModal } from "./show-hide-modal";
 
 export default function BoardDetailsLayout({
   children,
@@ -10,7 +11,7 @@ export default function BoardDetailsLayout({
   return (
     <>
       {children}
-      {card_modal}
+      <ShowHideModal>{card_modal}</ShowHideModal>
     </>
   );
 }

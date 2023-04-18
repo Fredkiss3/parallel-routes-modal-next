@@ -16,11 +16,28 @@ export default async function CardDetailsPage({
   ).then((r) => r.json())) as ApiResult<CardDetails>;
 
   return (
-    <CardModal
-      title={card.title}
-      description={card.description ? renderMarkdown(card.description) : null}
-      cover={card.coverURL}
-      boardId={params.bid}
-    />
+    <>
+      <CardModal
+        title={card.title}
+        description={card.description ? renderMarkdown(card.description) : null}
+        cover={card.coverURL}
+        boardId={params.bid}
+      />
+      {/* <h1 className="text-white text-4xl">{card.title}</h1> */}
+    </>
   );
+}
+
+export async function generateMetadata(props: {
+  params: { bid: string; cid: string };
+}) {
+  const { data: card } = (await fetch(
+    `https://thullo.fredkiss.dev/api/boards/${props.params.bid}/cards/${props.params.cid}`,
+    {
+      cache: "no-cache",
+    }
+  ).then((r) => r.json())) as ApiResult<CardDetails>;
+  return {
+    title: card.title,
+  };
 }

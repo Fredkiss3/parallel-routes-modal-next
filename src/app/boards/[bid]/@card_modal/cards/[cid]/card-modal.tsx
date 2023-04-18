@@ -1,5 +1,5 @@
 "use client";
-import * as React from 'react';
+import * as React from "react";
 
 import {
   Dialog,
@@ -18,11 +18,11 @@ export function CardModal(props: {
   boardId: string;
 }) {
   const router = useRouter();
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     setIsOpen(true);
-  }, [])
+  }, []);
 
   return (
     <Dialog
@@ -37,13 +37,13 @@ export function CardModal(props: {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           {props.cover && (
-            <div className="h-[150px] w-full overflow-hidden rounded-md">
+            <div className="h-[150px] w-full rounded-md">
               <Image
                 src={props.cover}
                 alt={`Cover ${props.title}`}
                 height={400}
                 width={400}
-                className="object-cover object-center"
+                className="object-cover object-center w-full h-full rounded-md"
               />
             </div>
           )}

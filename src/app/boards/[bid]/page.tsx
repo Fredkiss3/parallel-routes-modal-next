@@ -24,7 +24,7 @@ export default async function BoardsPage({
     <div className="w-full h-full">
       <ul
         className={cn(
-          "grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4",
+          "grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-4",
           board.lists.length === 0 &&
             "w-full h-hull items-center justify-center"
         )}
@@ -37,25 +37,25 @@ export default async function BoardsPage({
               {lis.cards.map((card) => (
                 <Link
                   href={`/boards/${bid}/cards/${card.id}`}
-                  className="rounded-md overflow-hidden"
                   key={card.id}
                   prefetch={false}
                 >
-                  <div className="h-[150px] w-[250px] overflow-hidden rounded-md">
+                  <div className="h-[150px] w-[250px] rounded-md">
                     {card.coverURL ? (
                       <Image
                         src={card.coverURL}
                         alt={`Cover ${card.title}`}
                         height={400}
                         width={400}
-                        className="object-cover object-center"
+                        className="object-cover object-center rounded-md w-full h-full"
                       />
                     ) : (
-                      <div className="h-[150px] w-[250px] bg-gray-500 flex items-center justify-center">
+                      <div className="h-full w-[250px] bg-gray-500 flex items-center justify-center rounded-md">
                         NO COVER
                       </div>
                     )}
                   </div>
+
                   {card.title}
                 </Link>
               ))}
@@ -65,4 +65,17 @@ export default async function BoardsPage({
       </ul>
     </div>
   );
+}
+
+export async function generateMetadata(props: { params: { bid: string } }) {
+  const { data: board } = (await fetch(
+    `https://thullo.fredkiss.dev/api/boards/${props.params.bid}`,
+    {
+      cache: "no-cache",
+    }
+  ).then((r) => r.json())) as ApiResult<BoardDetails>;
+
+  return {
+    title: board.name,
+  };
 }
