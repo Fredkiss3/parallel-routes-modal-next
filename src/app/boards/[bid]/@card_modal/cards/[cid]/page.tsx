@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ApiResult, CardDetails } from "~/app/types";
-import { CardModal } from "./card-modal";
+import { CardModal } from "~/app/_components/card-modal";
 import { renderMarkdown, wait } from "~/app/_lib/utils";
 
 export default async function CardDetailsPage({
