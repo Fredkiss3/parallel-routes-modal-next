@@ -23,7 +23,6 @@ export default async function CardDetailsPage({
         cover={card.coverURL}
         boardId={params.bid}
       />
-      {/* <h1 className="text-white text-4xl">{card.title}</h1> */}
     </>
   );
 }

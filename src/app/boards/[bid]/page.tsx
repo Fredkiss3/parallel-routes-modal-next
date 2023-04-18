@@ -3,7 +3,7 @@ import { ApiResult, Board, BoardDetails } from "../../types";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { cn, wait } from "~/app/_lib/utils";
+import { cn } from "~/app/_lib/utils";
 
 export default async function BoardsPage({
   params: { bid },
