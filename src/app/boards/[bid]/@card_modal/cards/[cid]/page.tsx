@@ -20,6 +20,7 @@ export default async function CardDetailsPage({
       title={card.title}
       description={card.description ? renderMarkdown(card.description) : null}
       cover={card.coverURL}
+      boardId={params.bid}
     />
   );
 }

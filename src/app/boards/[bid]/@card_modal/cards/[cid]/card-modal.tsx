@@ -14,6 +14,7 @@ export function CardModal(props: {
   title: string;
   cover: string | null;
   description: string | null;
+  boardId: string;
 }) {
   const router = useRouter();
   return (
@@ -21,6 +22,7 @@ export function CardModal(props: {
       open
       onOpenChange={(open) => {
         if (!open) {
+          // router.push(`/boards/${props.boardId}`)
           router.back();
         }
       }}
