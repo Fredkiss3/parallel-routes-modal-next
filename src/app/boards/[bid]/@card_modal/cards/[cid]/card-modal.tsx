@@ -1,4 +1,5 @@
 "use client";
+import * as React from 'react';
 
 import {
   Dialog,
@@ -17,9 +18,15 @@ export function CardModal(props: {
   boardId: string;
 }) {
   const router = useRouter();
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    setIsOpen(true);
+  }, [])
+
   return (
     <Dialog
-      open
+      open={isOpen}
       onOpenChange={(open) => {
         if (!open) {
           // router.push(`/boards/${props.boardId}`)
