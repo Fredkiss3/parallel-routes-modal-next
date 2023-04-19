@@ -38,7 +38,6 @@ export default async function BoardsPage({
       >
         {cid && (
           <React.Suspense fallback={<CardModalLoader />}>
-            {/* @ts-expect-error */}
             <CardDetail bid={bid} cid={cid} />
           </React.Suspense>
         )}
