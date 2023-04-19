@@ -1,11 +1,9 @@
 import * as React from "react";
-import { ApiResult, Board, BoardDetails, CardDetails } from "../../types";
+import type { ApiResult, BoardDetails, Card, CardDetails } from "../../types";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import { cn, renderMarkdown, wait } from "~/app/_lib/utils";
+import { renderMarkdown, wait } from "~/app/_lib/utils";
 import { CardModal } from "~/app/_components/card-modal";
-import { CardModalLoader } from "~/app/_components/card-modal-loader";
+import { CardList } from "./card-list";
 
 export default async function BoardsPage({
   params: { bid },
@@ -27,55 +25,15 @@ export default async function BoardsPage({
 
   const cid = searchParams?.cardId;
 
+  const allCards = board.lists.reduce((cards, list) => {
+    return cards.concat(list.cards);
+  }, [] as Card[]);
+
   return (
     <div className="w-full h-full">
-      <ul
-        className={cn(
-          "grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 py-4",
-          board.lists.length === 0 &&
-            "w-full h-hull items-center justify-center"
-        )}
-      >
-        {cid && (
-          <React.Suspense fallback={<CardModalLoader />}>
-            <CardDetail bid={bid} cid={cid} />
-          </React.Suspense>
-        )}
+      {cid && <CardDetail bid={bid} cid={cid} />}
 
-        {board.lists.length === 0 ? (
-          <h1 className="text-2xl font-bold">NO CARDS IN THE BOARD</h1>
-        ) : (
-          board.lists.map((lis) => (
-            <React.Fragment key={lis.id}>
-              {lis.cards.map((card) => (
-                <Link
-                  href={`/boards_search/${bid}?cardId=${card.id}`}
-                  key={card.id}
-                  prefetch={false}
-                >
-                  <div className="h-[150px] max-w-[250px] rounded-md">
-                    {card.coverURL ? (
-                      <Image
-                        src={card.coverURL}
-                        alt={`Cover ${card.title}`}
-                        height={400}
-                        width={400}
-                        className="object-cover object-center rounded-md w-full h-full"
-                      />
-                    ) : (
-                      <div className="h-full max-w-[250px] bg-gray-500 flex items-center justify-center rounded-md">
-                        NO COVER
-                      </div>
-                    )}
-                  </div>
-
-                  {card.title}
-                </Link>
-              ))}
-            </React.Fragment>
-          ))
-        )}
-      </ul>
+      <CardList cards={allCards} boardId={bid} />
     </div>
   );
 }

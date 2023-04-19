@@ -7,16 +7,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from "~/app/_components/dialog";
-import { useRouter } from "next/navigation";
 
-export function CardModalLoader() {
-  const router = useRouter();
+export type CardModalLoaderProps = {
+  onClose?: () => void;
+};
+
+export function CardModalLoader(props: CardModalLoaderProps) {
   return (
     <Dialog
       open
       onOpenChange={(open) => {
         if (!open) {
-          router.back();
+          props.onClose?.();
         }
       }}
     >

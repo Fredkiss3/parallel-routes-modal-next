@@ -22,7 +22,7 @@ export function CardModal(props: {
 
   React.useEffect(() => {
     setIsOpen(true);
-  }, []);
+  }, [router]);
 
   return (
     <Dialog
