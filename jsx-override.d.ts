@@ -1,5 +1,9 @@
-namespace JSX {
-  export type ElementType =
-    | React.ReactElementType
-    | Promise<React.ReactElementType>;
+import { ReactNode } from "react";
+
+declare global {
+  namespace JSX {
+    type ElementType =
+      | keyof JSX.IntrinsicElements
+      | ((props: any) => Promise<ReactNode> | ReactNode);
+  }
 }
