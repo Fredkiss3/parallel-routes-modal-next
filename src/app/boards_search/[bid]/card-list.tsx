@@ -46,6 +46,7 @@ export function CardList({ cards, boardId }: CardListProps) {
                 });
               });
             }}
+            className="flex flex-col gap-2"
           >
             <div className="h-[150px] max-w-[250px] rounded-md">
               {card.coverURL ? (
