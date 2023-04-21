@@ -8,6 +8,7 @@ export default async function CardDetailsPage({
 }: {
   params: { bid: string; cid: string };
 }) {
+  await wait(1000);
   const { data: card } = (await fetch(
     `https://thullo.fredkiss.dev/api/boards/${params.bid}/cards/${params.cid}`,
     {
