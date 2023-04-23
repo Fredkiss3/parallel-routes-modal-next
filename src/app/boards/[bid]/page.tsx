@@ -38,7 +38,7 @@ export default async function BoardsPage({
                 <Link
                   href={`/boards/${bid}/cards/${card.id}`}
                   key={card.id}
-                  prefetch={false}
+                  // prefetch={false}
                 >
                   <div className="h-[150px] max-w-[250px] rounded-md">
                     {card.coverURL ? (
