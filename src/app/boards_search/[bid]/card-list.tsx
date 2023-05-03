@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import type { Card } from "~/app/types";
 import { CardModalLoader } from "~/app/_components/card-modal-loader";
 import { cn } from "~/app/_lib/utils";
+import Link from "next/link";
 
 export type CardListProps = {
   cards: Card[];
@@ -35,17 +36,9 @@ export function CardList({ cards, boardId }: CardListProps) {
         <h1 className="text-2xl font-bold">NO CARDS IN THE BOARD</h1>
       ) : (
         cards.map((card) => (
-          <a
+          <Link
             href={`/boards_search/${boardId}?cardId=${card.id}`}
             key={card.id}
-            onClick={(e) => {
-              e.preventDefault();
-              startTransition(() => {
-                router.push(`/boards_search/${boardId}?cardId=${card.id}`, {
-                  forceOptimisticNavigation: true,
-                });
-              });
-            }}
             className="flex flex-col gap-2"
           >
             <div className="h-[150px] max-w-[250px] rounded-md">
@@ -65,7 +58,7 @@ export function CardList({ cards, boardId }: CardListProps) {
             </div>
 
             {card.title}
-          </a>
+          </Link>
         ))
       )}
     </ul>

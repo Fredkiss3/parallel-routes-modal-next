@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { renderMarkdown, wait } from "~/app/_lib/utils";
 import { CardModal } from "~/app/_components/card-modal";
 import { CardList } from "./card-list";
+import { CardModalLoader } from "~/app/_components/card-modal-loader";
 
 export default async function BoardsPage({
   params: { bid },
@@ -31,7 +32,11 @@ export default async function BoardsPage({
 
   return (
     <div className="w-full h-full">
-      {cid && <CardDetail bid={bid} cid={cid} />}
+      {cid && (
+        <React.Suspense fallback={<CardModalLoader />}>
+          <CardDetail bid={bid} cid={cid} />
+        </React.Suspense>
+      )}
 
       <CardList cards={allCards} boardId={bid} />
     </div>
