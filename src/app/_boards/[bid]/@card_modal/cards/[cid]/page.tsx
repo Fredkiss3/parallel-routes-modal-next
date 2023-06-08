@@ -10,10 +10,7 @@ export default async function CardDetailsPage({
 }) {
   await wait(1000);
   const { data: card } = (await fetch(
-    `https://thullo.fredkiss.dev/api/boards/${params.bid}/cards/${params.cid}`,
-    {
-      cache: "no-cache",
-    }
+    `https://thullo.fredkiss.dev/api/boards/${params.bid}/cards/${params.cid}`
   ).then((r) => r.json())) as ApiResult<CardDetails>;
 
   return (
@@ -32,10 +29,7 @@ export async function generateMetadata(props: {
   params: { bid: string; cid: string };
 }) {
   const { data: card } = (await fetch(
-    `https://thullo.fredkiss.dev/api/boards/${props.params.bid}/cards/${props.params.cid}`,
-    {
-      cache: "no-cache",
-    }
+    `https://thullo.fredkiss.dev/api/boards/${props.params.bid}/cards/${props.params.cid}`
   ).then((r) => r.json())) as ApiResult<CardDetails>;
   return {
     title: card.title,
