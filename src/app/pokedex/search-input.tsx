@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
 import { cn } from "../_lib/utils";
 
@@ -9,13 +9,14 @@ export type SearchInputProps = {};
 export function SearchInput({}: SearchInputProps) {
   const router = useRouter();
   const sParams = useSearchParams();
+  const path = usePathname();
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         router.push(
-          `/pokedex?${new URLSearchParams(
+          `${path}?${new URLSearchParams(
             // @ts-expect-error URLSearchParams can accept FormData
             new FormData(e.currentTarget)
           ).toString()}`
