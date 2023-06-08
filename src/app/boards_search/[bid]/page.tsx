@@ -67,20 +67,14 @@ export async function generateMetadata(props: {
   searchParams?: Record<string, any>;
 }) {
   const { data: board } = (await fetch(
-    `https://thullo.fredkiss.dev/api/boards/${props.params.bid}`,
-    {
-      cache: "no-cache",
-    }
+    `https://thullo.fredkiss.dev/api/boards/${props.params.bid}`
   ).then((r) => r.json())) as ApiResult<BoardDetails>;
 
   const cid = props.searchParams?.cardId;
 
   if (cid) {
     const { data: card } = (await fetch(
-      `https://thullo.fredkiss.dev/api/boards/${props.params.bid}/cards/${cid}`,
-      {
-        cache: "no-cache",
-      }
+      `https://thullo.fredkiss.dev/api/boards/${props.params.bid}/cards/${cid}`
     ).then((r) => r.json())) as ApiResult<CardDetails | null>;
 
     if (!card) {
