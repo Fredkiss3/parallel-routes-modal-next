@@ -1,18 +1,12 @@
-import { redirect } from "next/navigation";
-
-export default function DefaultPage() {
-  return null;
-}
+import { Page } from "./common-page";
 
 export function generateMetadata(props: {
   searchParams?: Record<string, string | undefined>;
 }) {
-  const sParams = new URLSearchParams();
-  if (props.searchParams?.search) {
-    sParams.append("search", props.searchParams?.search);
-  }
-  if (props.searchParams?.wait) {
-    sParams.append("wait", props.searchParams?.wait);
-  }
-  redirect(`/pokedex/node?${sParams.toString()}`);
+  const query = props.searchParams?.search;
+  return {
+    title: query ? `Searching for ${query}` : "Search page",
+  };
 }
+
+export default Page;
