@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default async function BoardsPage() {
-  const boards = (await fetch(`https://thullo.fredkiss.dev/api/boards/`, {
-    cache: "no-cache",
-  }).then((r) => r.json())) as ApiResult<Board[]>;
+  const boards = (await fetch(`https://thullo.fredkiss.dev/api/boards/`).then(
+    (r) => r.json()
+  )) as ApiResult<Board[]>;
 
   return (
     <div className="overflow-scroll">

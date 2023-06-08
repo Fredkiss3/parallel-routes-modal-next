@@ -119,7 +119,8 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         </dd>
       </div>
 
-      <Image
+      {/*  eslint-disable-next-line @next/next/no-img-element  */}
+      <img
         width={200}
         height={200}
         src={pokemonPNGURL}

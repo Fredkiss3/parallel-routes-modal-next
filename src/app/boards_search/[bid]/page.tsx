@@ -14,10 +14,7 @@ export default async function BoardsPage({
   searchParams?: Record<string, string | undefined>;
 }) {
   const { data: board } = (await fetch(
-    `https://thullo.fredkiss.dev/api/boards/${bid}`,
-    {
-      cache: "no-cache",
-    }
+    `https://thullo.fredkiss.dev/api/boards/${bid}`
   ).then((r) => r.json())) as ApiResult<BoardDetails>;
 
   if (!board) {
@@ -46,10 +43,7 @@ export default async function BoardsPage({
 async function CardDetail(props: { bid: string; cid: string }) {
   await wait(1000);
   const { data: card } = (await fetch(
-    `https://thullo.fredkiss.dev/api/boards/${props.bid}/cards/${props.cid}`,
-    {
-      cache: "no-cache",
-    }
+    `https://thullo.fredkiss.dev/api/boards/${props.bid}/cards/${props.cid}`
   ).then((r) => r.json())) as ApiResult<CardDetails | null>;
 
   return (
