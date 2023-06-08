@@ -33,7 +33,7 @@ export default async function BoardsPage({
   return (
     <div className="w-full h-full">
       {cid && (
-        <React.Suspense fallback={<CardModalLoader />}>
+        <React.Suspense fallback={<CardModalLoader />} key={searchParams.cid}>
           <CardDetail bid={bid} cid={cid} />
         </React.Suspense>
       )}

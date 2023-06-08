@@ -40,6 +40,7 @@ export function CardList({ cards, boardId }: CardListProps) {
             href={`/boards_search/${boardId}?cardId=${card.id}`}
             key={card.id}
             className="flex flex-col gap-2"
+            prefetch={false}
           >
             <div className="h-[150px] max-w-[250px] rounded-md">
               {card.coverURL ? (
