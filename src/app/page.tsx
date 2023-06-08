@@ -6,9 +6,6 @@ export default function Page() {
       <Link className="underline" href={`/pokedex`}>
         Go to Pokedex
       </Link>
-      <Link className="underline" href={`/boards`}>
-        Go to boards with parallel route
-      </Link>
       <Link className="underline" href={`/boards_search`}>
         Go to boards with search Param
       </Link>
