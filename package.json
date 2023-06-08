@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "pages:build": "npx @cloudflare/next-on-pages --experimental-minify",
-    "pages:deploy": "npm run pages:build && wrangler pages publish .vercel/output/static",
+    "pages:build-deploy": "pnpm run pages:build && pnpm run pages:deploy",
+    "pages:deploy": "wrangler pages deploy .vercel/output/static",
     "pages:watch": "npx @cloudflare/next-on-pages --watch",
     "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
   },
@@ -22,7 +23,7 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "lucide-react": "^0.161.0",
-    "next": "13.4.2",
+    "next": "13.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "remarkable": "^2.0.1",
@@ -30,7 +31,7 @@
     "tailwindcss-animate": "^1.0.5"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.0.2",
+    "@cloudflare/next-on-pages": "^0.10.1",
     "@types/remarkable": "^2.0.3",
     "autoprefixer": "10.4.14",
     "postcss": "8.4.22",
