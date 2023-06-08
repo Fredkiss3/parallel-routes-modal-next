@@ -1,14 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
+import { cn } from "../_lib/utils";
 
-export type SearchInputProps = {
-  defaultValue?: string;
-};
+export type SearchInputProps = {};
 
-export function SearchInput({ defaultValue }: SearchInputProps) {
+export function SearchInput({}: SearchInputProps) {
   const router = useRouter();
+  const sParams = useSearchParams();
 
   return (
     <form
@@ -23,7 +23,45 @@ export function SearchInput({ defaultValue }: SearchInputProps) {
       }}
       className="flex items-center gap-4 justify-center"
     >
-      <fieldset className="flex flex-col gap-2">
+      <fieldset>
+        <label htmlFor="wait" className="flex gap-2 items-center">
+          <input
+            type="checkbox"
+            name="wait"
+            id="wait"
+            className="sr-only peer"
+            defaultChecked={sParams.get("wait") === "on"}
+          />
+
+          <div
+            className={cn(
+              "h-4 w-4 inline-flex flex-col items-center justify-center",
+              "border-[1.5px] border-black  bg-white rounded-sm text-black",
+              "peer-focus:ring-2 ring-primary [&>svg]:hidden peer-checked:[&>svg]:block"
+            )}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 256"
+              aria-hidden="true"
+              className="h-4 w-4"
+            >
+              <rect width="256" height="256" fill="none" />
+              <polyline
+                points="40 144 96 200 224 72"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              />
+            </svg>
+          </div>
+          <span>Wait ?</span>
+        </label>
+      </fieldset>
+
+      <fieldset>
         <label htmlFor="search" className="sr-only">
           The name of the pokemon you are searching
         </label>
@@ -33,7 +71,7 @@ export function SearchInput({ defaultValue }: SearchInputProps) {
           id="search"
           placeholder="ex: pikachu"
           className="flex items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700"
-          defaultValue={defaultValue}
+          defaultValue={sParams.get("search") ?? ""}
         />
       </fieldset>
 

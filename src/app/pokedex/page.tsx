@@ -2,6 +2,7 @@ import * as React from "react";
 import { SearchInput } from "./search-input";
 import { cn, wait } from "~/app/_lib/utils";
 import { headers } from "next/headers";
+import Image from "next/image";
 
 type Pokemon = {
   name: string;
@@ -24,14 +25,14 @@ function isSSR() {
 export default function Page(props: {
   searchParams?: Record<string, string | undefined>;
 }) {
-  const keyString = `search=${props.searchParams?.search}`;
+  const keyString = `search=${props.searchParams?.search}&wait=${props.searchParams?.wait}`;
   return (
     <main className="flex flex-col">
-      <SearchInput defaultValue={props.searchParams?.search} />
+      <SearchInput />
 
       {props.searchParams?.search &&
         (isSSR() ? (
-          <PokemonList name={props.searchParams?.search} />
+          <PokemonList name={props.searchParams?.search} wait={false} />
         ) : (
           <React.Suspense
             key={keyString}
@@ -44,15 +45,20 @@ export default function Page(props: {
               </ul>
             }
           >
-            <PokemonList name={props.searchParams?.search} />
+            <PokemonList
+              name={props.searchParams?.search}
+              wait={props.searchParams?.wait === "on"}
+            />
           </React.Suspense>
         ))}
     </main>
   );
 }
 
-async function PokemonList(props: { name: string }) {
-  await wait(1000);
+async function PokemonList(props: { name: string; wait: boolean }) {
+  if (props.wait) {
+    await wait(1000);
+  }
   const pokemons = await fetch(`https://beta.pokeapi.co/graphql/v1beta`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -81,9 +87,6 @@ async function PokemonList(props: { name: string }) {
     )
     .then((result) => result.data?.pokemons ?? []);
 
-  console.log({
-    pokemons,
-  });
   return (
     <ul
       className={cn(
@@ -114,7 +117,7 @@ function PokemonCardSkeleton() {
 }
 
 function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
-  const pokemonSVGURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+  const pokemonPNGURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
 
   return (
     <dl className="border rounded-md bg-gray-600 border-gray-200 font-normal p-2 flex flex-col gap-4">
@@ -125,8 +128,10 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         </dd>
       </div>
 
-      <img
-        src={pokemonSVGURL}
+      <Image
+        width={200}
+        height={200}
+        src={pokemonPNGURL}
         alt={pokemon.name}
         className="h-[200px] w-[200px] self-center drop-shadow-md relative z-1"
       />
