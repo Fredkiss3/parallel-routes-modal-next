@@ -44,7 +44,8 @@ export function CardList({ cards, boardId }: CardListProps) {
           >
             <div className="h-[150px] max-w-[250px] rounded-md">
               {card.coverURL ? (
-                <Image
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
                   src={card.coverURL}
                   alt={`Cover ${card.title}`}
                   height={400}
