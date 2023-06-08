@@ -18,7 +18,8 @@ export default async function BoardsPage() {
               className="rounded-md overflow-hidden"
             >
               <div className="h-[150px] max-w-[250px] w-full overflow-hidden rounded-md">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={b.cover.url}
                   alt={`Cover ${b.name}`}
                   height={400}

@@ -9,7 +9,6 @@ import {
   DialogTitle,
 } from "~/app/_components/dialog";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 export function CardModal(props: {
   title: string;
@@ -38,7 +37,8 @@ export function CardModal(props: {
         <DialogHeader>
           {props.cover && (
             <div className="h-[150px] w-full rounded-md">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={props.cover}
                 alt={`Cover ${props.title}`}
                 height={400}
