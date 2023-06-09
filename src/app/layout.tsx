@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={inter.className}>
       <head></head>
       <body suppressHydrationWarning className="dark">
-        <main className="flex min-h-screen flex-col items-center justify-between p-24 h-screen">
+        <main className="flex min-h-screen flex-col items-center justify-between p-4 pt-24 md:p-24 h-screen">
           <div className="z-10 w-full h-full max-w-5xl items-center justify-between font-mono text-sm">
             <Link
               href={`/`}

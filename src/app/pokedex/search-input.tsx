@@ -22,7 +22,7 @@ export function SearchInput({}: SearchInputProps) {
           ).toString()}`
         );
       }}
-      className="flex items-center gap-4 justify-center"
+      className="flex md:items-center gap-4 justify-center flex-col md:flex-row"
     >
       <fieldset>
         <label htmlFor="wait" className="flex gap-2 items-center">
@@ -71,7 +71,7 @@ export function SearchInput({}: SearchInputProps) {
           name="search"
           id="search"
           placeholder="ex: pikachu"
-          className="flex items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700"
+          className="flex items-center w-full max-w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700"
           defaultValue={sParams.get("search") ?? ""}
         />
       </fieldset>

@@ -26,7 +26,7 @@ export default function Page(props: {
 }) {
   const keyString = `search=${props.searchParams?.search}&wait=${props.searchParams?.wait}`;
   return (
-    <main className="flex flex-col">
+    <section className="flex flex-col">
       <SearchInput />
 
       {props.searchParams?.search &&
@@ -50,7 +50,7 @@ export default function Page(props: {
             />
           </React.Suspense>
         ))}
-    </main>
+    </section>
   );
 }
 
